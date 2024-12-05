@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <h2>ADIVINA EL NÚMERO</h2>
+        <button type="button" id="btn-generate">Empezar juego</button>
+        <input type="number" id="number" placeholder="Indica un número entre 1 y 10">
+        <button type="button" id="btn-guess">Probar número</button>
+        <p id="result"></p>
+        <p id="tried"></p>
+    </div>
+
+    <script>
+
+        //Añadimos una variable que cuente la cantidad
+        //de intentos y lo mostramos en pantalla
+
+        //Accedemos a los elementos del documento
+        const btnGenerate = document.getElementById("btn-generate");
+        const btnGuess = document.getElementById("btn-guess");
+        const number = document.getElementById("number");
+        const result = document.getElementById("result");
+        const triedLabel = document.getElementById("tried");
+        var randomNumber = 0;
+        var tried = 0;
+
+        //Evento para generar el número
+        btnGenerate.onclick = () => {
+            tried = 0;
+            //1 crear un número aleatorio entre 1 y 10
+            randomNumber = Math.floor(Math.random() * 10) + 1;
+            //2 Avisamos al usuario de que puede empezar a probar
+            result.innerHTML = "Número generado ¡Ya puedes adivinar el número!😊";
+        }
+
+        //Función para comprobar si dos números son iguales:
+        function checkNumber(randomNumber, userNumber){
+            if(randomNumber > userNumber){
+                return '¡Número demasiado bajo! Prueba otra vez...';
+            }
+            else if(randomNumber < userNumber){
+                return '¡Número demasiado alto! Prueba otra vez...'; 
+            }
+            else{
+                return '🎉¡Has acertado!🎉';
+            }
+        }
+
+        //Evento de adivinar el número:
+        btnGuess.onclick = () => {
+            //1 Leemos el número del usuario
+            const userNumber = parseInt(number.value);
+            //2 Comprobamos que el número este comprendido entre 1 y 10
+            if(userNumber > 10 || userNumber < 1){
+                result.innerHTML = "El número debe estar entre 1 y 10";
+                return; //Finalizamos la ejecución
+            }
+            //3 Llamamos a la función checkNumber y mostramos su 
+            //resultado
+
+            result.innerHTML = checkNumber(randomNumber, userNumber);
+
+            tried++; //tried = tried + 1;
+            triedLabel.innerHTML = `Llevas ${tried} intentos`;
+
+        }
+
+
+
+
+    </script>
+    
+</body>
+</html>

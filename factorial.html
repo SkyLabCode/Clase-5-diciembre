@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        function obtenerFactorial(numero){
+            //3*2*1 == 1*2*3
+            var factorial = 1;
+            for(var i = 1; i <= numero; i++){
+                factorial *= i; //factorial = factorial * i
+                //Si el número 3:
+                //1ª iteración 1 * 1 = 1
+                //2ª iteración 1 * 2 = 2
+                //3ª iteración 2 * 3 = 6
+            }
+            return factorial;
+        }
+
+        console.log(obtenerFactorial(10));
+        console.log(obtenerFactorial(8));
+
+    </script>
+    
+</body>
+</html>
